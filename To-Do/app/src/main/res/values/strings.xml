@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">To-Do</string>
+    <string name="labas">Labas</string>
+    <string name="Create">Create</string>
+    <string name="Create1">Enter task</string>
+    <string name="Create2">Enter description</string>
 </resources>
