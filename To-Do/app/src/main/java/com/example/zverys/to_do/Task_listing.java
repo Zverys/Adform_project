@@ -92,7 +92,7 @@ public class Task_listing extends AppCompatActivity {
             return convertView;
         }
     }
-    public class ViewHolder {
+    public static class ViewHolder {
         ImageView thumbnail;
         TextView title;
         Button button;
