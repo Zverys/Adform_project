@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants">
+
+    <ImageView
+        android:id="@+id/list_item_thumb"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:contentDescription="siaip"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <EditText
+        android:id="@+id/list_item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="39dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/list_item_thumb"
+        android:layout_toRightOf="@+id/list_item_thumb"
+        android:text="New text" />
+
+    <Button
+        android:id="@+id/list_item_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/list_item_text"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="Okay" />
+
+    <TextView
+        android:id="@+id/textView_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/list_item_thumb"
+        android:layout_toEndOf="@+id/list_item_thumb"
+        android:layout_toLeftOf="@+id/list_item_button"
+        android:layout_toRightOf="@+id/list_item_thumb"
+        android:layout_toStartOf="@+id/list_item_button"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/texView_atliktiIKI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView_description"
+        android:text="Atlikti iki:" />
+
+    <TextView
+        android:id="@+id/textView_Category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/list_item_thumb"
+        android:layout_toEndOf="@+id/list_item_text"
+        android:layout_toRightOf="@+id/list_item_text"
+        android:text="Category: Virtuvinininie" />
+</RelativeLayout>

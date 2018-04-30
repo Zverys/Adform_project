@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TaskCreateActivity"></activity>
+        <activity android:name=".TaskCreateActivity" />
+        <activity android:name=".Task_listing" />
     </application>
 
 </manifest>
