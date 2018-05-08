@@ -1,6 +1,8 @@
 package com.example.zverys.to_do;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +19,10 @@ import java.io.Console;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class TaskCreateActivity extends AppCompatActivity {
 
@@ -59,16 +64,10 @@ public class TaskCreateActivity extends AppCompatActivity {
                     Toast.makeText(TaskCreateActivity.this, error1, Toast.LENGTH_LONG).show();
                 }
                 else{
-                    tasks.add(new Task(task, description, category, new Date(2018-11-27)));
-                    Toast.makeText(TaskCreateActivity.this, task + "\n" + description + "\n" + category + "\n" + date + "\n" + tasks.size(), Toast.LENGTH_LONG).show();
-                    //Intent toTaskView = new Intent(TaskCreateActivity.this, Task_listing.class);
-                    //startActivity(toTaskView);
+                    CreateTaskToDB(new Task(task, description, category, date));
 
-                    //lv.setAdapter(new Task_listing.MyListAdapter(this, R.layout.layout, tasks));
+                    Toast.makeText(TaskCreateActivity.this, task + "\n" + description + "\n" + category + "\n" + date + "\n", Toast.LENGTH_LONG).show();
                 }
-                //    tasks.add(new Task("", "", "", new Date(2018-11-27)));}
-                //Toast.makeText(TaskCreateActivity.this, task + "\n" + description + "\n" + category + "\n" + date, Toast.LENGTH_LONG).show();
-
             }
         });}
 
@@ -85,4 +84,48 @@ public class TaskCreateActivity extends AppCompatActivity {
         public ArrayList<Task> getTasks(){
             return tasks;
         }
+    public void CreateTaskToDB(final Task task) {
+
+        class CreateTask extends AsyncTask<String, Void, String> {
+            ProgressDialog loading;
+            DB database = new DB();
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(TaskCreateActivity.this, getString(R.string.Login_please_wait), null, true, true);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+
+                if (s.equals(Integer.toString(HttpsURLConnection.HTTP_OK))) {
+                    Intent intent = new Intent(TaskCreateActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(TaskCreateActivity.this, "zjbs", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(TaskCreateActivity.this, "pz", Toast.LENGTH_LONG).show();
+                }
+                loading.dismiss();
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+                HashMap<String, String> data = new HashMap<>();
+                data.put("action", "task_create");
+                data.put("pavadinimas", params[0]);
+                data.put("aprasymas", params[1]);
+                data.put("kategorija", params[2]);
+                data.put("data", params[3]);
+
+                String result = database.sendPostRequest(getString(R.string.URL_DATABASE), data);
+
+                return result;
+            }
+        }
+
+        CreateTask tasks = new CreateTask();
+        tasks.execute(task.name, task.desciption, task.category, task.date.toString());
+    }
     }

@@ -7,4 +7,21 @@
     <string name="title_activity_tab">TabActivity</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
+    <string name="login_remember_me">Remember me</string>
+    <string name="register_email">Email</string>
+    <string name="register_repeat_password">Repeat password</string>
+    <string name="login_submit">Login</string>
+    <string name="register">Sign up</string>
+    <string name="login_invalid_username">Bad username format</string>
+    <string name="login_invalid_password">Bad password format</string>
+    <string name="register_invalid_email">Bad Email format</string>
+    <string name="passwords_not_match">Password not match</string>
+    <string name="Login_please_wait">Please wait</string>
+    <string name="register_success">Registration succeeded</string>
+    <string name="register_failure">Username or Email is taken by another account</string>
+    <string name="URL_DATABASE">http://www.zverys.byethost7.com/mobile/zverysdatabase.php</string>
+    <string name="login_success">Login succeeded</string>
+    <string name="login_failure">Username or Email is not found</string>
 </resources>
