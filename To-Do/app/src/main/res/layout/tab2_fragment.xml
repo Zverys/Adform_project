@@ -4,34 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="93dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/btnTEST2"
-        android:layout_marginStart="12dp"
-        android:padding="5dp"
-        android:text="Tasks List!"
-        android:layout_marginLeft="12dp"
-        android:layout_alignParentLeft="true" />
-
     <ListView
-        android:id="@+id/lv"
-        android:layout_width="wrap_content"
-        android:layout_height="402dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="-10dp" />
-
-    <Button
-        android:id="@+id/btnTEST2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="TESTBTN 1" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/tab2_listview"/>
 
 </RelativeLayout>

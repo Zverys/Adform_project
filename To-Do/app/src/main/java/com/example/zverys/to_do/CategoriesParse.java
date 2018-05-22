@@ -57,7 +57,6 @@ public class CategoriesParse extends AsyncTask<Void,Integer,Integer> {
         {
             //ADAPTER
             ArrayAdapter<String> adapter=new ArrayAdapter<String>(c,android.R.layout.simple_list_item_1,categories );
-
             //ADAPT TO LISTVIEW
             lv.setAdapter(adapter);
 
@@ -98,7 +97,7 @@ public class CategoriesParse extends AsyncTask<Void,Integer,Integer> {
 
                 //ADD IT TO OUR ARRAYLIST
                 categories.add(jo.getString("category"));
-                categories.add(jo.getString("description"));
+               // categories.add(jo.getString("description"));
 
             }
 

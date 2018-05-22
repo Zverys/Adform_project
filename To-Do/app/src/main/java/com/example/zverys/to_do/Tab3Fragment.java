@@ -18,18 +18,9 @@ public class Tab3Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab3_fragment,container,false);
-        btnTEST = (Button) view.findViewById(R.id.btnTEST3);
         final ListView lv1= (ListView) view.findViewById(R.id.lv1);
         final CategoriesDownloader d1=new CategoriesDownloader(this.getContext(),getString(R.string.URL_Get_Categories),lv1);
         d1.execute();
-
-        btnTEST.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent inent = new Intent(getActivity(), CategoryCreateActivity.class);
-                startActivity(inent);
-            }
-        });
 
         return view;
     }

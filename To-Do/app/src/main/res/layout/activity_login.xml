@@ -11,8 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="170dp"
         android:layout_weight="0.16"
-
-        />
+        android:src="@drawable/todo" />
     
     <Space
         android:layout_width="match_parent"

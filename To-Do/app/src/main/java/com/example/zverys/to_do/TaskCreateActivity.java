@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.ConsoleMessage;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -15,12 +14,10 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -37,7 +34,7 @@ public class TaskCreateActivity extends AppCompatActivity {
         //get the spinner from the xml.
         final Spinner dropdown = (Spinner) findViewById(R.id.kategorijos);
         //create a list of items for the spinner.
-        String[] items = new String[]{"choose category", "Summer", "place holder"};
+        String[] items = new String[]{"choose category", "Summer", "Home work", "Business"};
         //create an adapter to describe how the items are displayed, adapters are used in several places in android.
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         //set the spinners adapter to the previously created one.
@@ -117,7 +114,7 @@ public class TaskCreateActivity extends AppCompatActivity {
                 data.put("aprasymas", params[1]);
                 data.put("kategorija", params[2]);
                 data.put("data", params[3]);
-                data.put("userid", UserName.UserName);
+                data.put("userid", StaticItems.UserName);
                 String result = database.sendPostRequest(getString(R.string.URL_DATABASE), data);
                 return result;
             }

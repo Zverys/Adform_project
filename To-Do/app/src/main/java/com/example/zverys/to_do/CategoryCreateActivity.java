@@ -13,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -163,7 +162,7 @@ public class CategoryCreateActivity extends AppCompatActivity {
                 data.put("action", "category_create");
                 data.put("category", params[0]);
                 data.put("description", params[1]);
-                data.put("iduser", UserName.UserName);
+                data.put("iduser", StaticItems.UserName);
 
                 String result = database.sendPostRequest(getString(R.string.URL_DATABASE), data);
 

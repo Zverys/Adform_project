@@ -49,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new Tab1Fragment(), "Tasks");
-        adapter.addFragment(new Tab2Fragment(), "Categories");
-        adapter.addFragment(new Tab3Fragment(), "Tasks List");
+        adapter.addFragment(new Tab1Fragment(), "Home");
+        adapter.addFragment(new Tab2Fragment(), "Tasks List");
+        adapter.addFragment(new Tab3Fragment(), "Categories List");
         viewPager.setAdapter(adapter);
     }
 }

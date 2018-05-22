@@ -137,7 +137,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
         Login login = new Login();
-        UserName.UserName = user.getUsernameForLogin();
+        StaticItems.UserName = user.getUsernameForLogin();
         login.execute(user.getUsernameForLogin(), user.getPasswordForLogin());
     }
 }
