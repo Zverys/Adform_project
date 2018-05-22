@@ -1,4 +1,5 @@
 package com.example.zverys.to_do;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -6,11 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+
 
 public class Tab3Fragment extends Fragment {
     private static final String TAG = "Tab3Fragment";
-
     private Button btnTEST;
 
     @Nullable
@@ -22,10 +22,12 @@ public class Tab3Fragment extends Fragment {
         btnTEST.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "TESTING BUTTON CLICK 3",Toast.LENGTH_SHORT).show();
+                Intent inent = new Intent(getActivity(), TaskCreateActivity.class);
+                startActivity(inent);
             }
         });
 
         return view;
     }
 }
+

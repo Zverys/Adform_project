@@ -49,6 +49,7 @@ public class TaskCreateActivity extends AppCompatActivity {
         this.taskDescriptionprasymas = (EditText)findViewById(R.id.taskDescription);
         this.datePick = (DatePicker)findViewById(R.id.datePicker);
 
+
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

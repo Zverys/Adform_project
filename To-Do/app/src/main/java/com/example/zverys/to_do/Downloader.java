@@ -1,4 +1,5 @@
 package com.example.zverys.to_do;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -11,82 +12,99 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-public class Downloader extends AsyncTask<Void,Void,String>{
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class Downloader extends AsyncTask<Void,Integer,String> {
+
     Context c;
-    String urlAddess;
+    String address;
     ListView lv;
 
     ProgressDialog pd;
 
-    public Downloader(Context c, String urlAddess, ListView lv) {
+    public Downloader(Context c, String address, ListView lv) {
         this.c = c;
-        this.urlAddess = urlAddess;
+        this.address = address;
         this.lv = lv;
     }
 
+    //B4 JOB STARTS
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
 
         pd=new ProgressDialog(c);
-        pd.setTitle("Retrieve");
-        pd.setMessage("Retrieving..Please wait");
+        pd.setTitle("Fetch Data");
+        pd.setMessage("Fetching Data...Please wait");
         pd.show();
     }
 
     @Override
     protected String doInBackground(Void... params) {
-        return this.downloadData();
+        String data=downloadData();
+        return data;
     }
 
     @Override
-    protected void onPostExecute(String jsonData) {
-        super.onPostExecute(jsonData);
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
 
-        pd.dismiss();
-        if(jsonData.startsWith("Error"))
+        pd.dismiss();;
+
+        if(s != null)
         {
-            Toast.makeText(c,"Unsuccessful "+jsonData,Toast.LENGTH_SHORT).show();
+            Parser p=new Parser(c,s,lv);
+            p.execute();
+
         }else
         {
-            //PARSE
-            new DataParser(c,jsonData,lv).execute();
+            Toast.makeText(c,"Unable to download data",Toast.LENGTH_SHORT).show();
         }
-
     }
 
     private String downloadData()
     {
-        Object connection=Connector.connect(urlAddess);
-        if(connection.toString().startsWith("Error"))
-        {
-            return connection.toString();
-        }
+        //connect and get a stream
+        InputStream is=null;
+        String line =null;
 
         try {
-            HttpURLConnection con= (HttpURLConnection) connection;
+            URL url=new URL(address);
+            HttpURLConnection con= (HttpURLConnection) url.openConnection();
+            con.setRequestProperty("Cookie", "__test=90e9e4b12c71c5bed665d72d8f934c2e; expires=Friday, January 1, 2038 at 1:55:55 AM; path=/");
+            is=new BufferedInputStream(con.getInputStream());
 
-            InputStream is=new BufferedInputStream(con.getInputStream());
             BufferedReader br=new BufferedReader(new InputStreamReader(is));
 
-            String line;
-            StringBuffer jsonData=new StringBuffer();
+            StringBuffer sb=new StringBuffer();
 
-            while ((line=br.readLine()) != null)
-            {
-                jsonData.append(line+"n");
+            if(br != null) {
 
+                while ((line=br.readLine()) != null) {
+                    sb.append(line+"\n");
+                }
+
+            }else {
+                return null;
             }
 
-            br.close();
-            is.close();
+            return sb.toString();
 
-            return jsonData.toString();
-
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-            return "Error "+e.getMessage();
+        }finally {
+            if(is != null)
+            {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-
+        return null;
     }
 }

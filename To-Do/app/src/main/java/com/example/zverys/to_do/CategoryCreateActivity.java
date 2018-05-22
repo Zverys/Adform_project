@@ -1,5 +1,6 @@
 package com.example.zverys.to_do;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -49,11 +50,26 @@ public class CategoryCreateActivity extends AppCompatActivity {
         tabHost.addTab(tabSpec);
 
         final Button createBtn = (Button) findViewById(R.id.button);
+        createBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                addCategory(categoryTitle.getText().toString(), categoryDsc.getText().toString());
+                populateList();
+                Toast.makeText(getApplicationContext(), categoryTitle.getText().toString()+" has been added to your Categories", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(CategoryCreateActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+                                     });
+        /*
         createBtn.setOnClickListener((view) -> {
                 addCategory(categoryTitle.getText().toString(), categoryDsc.getText().toString());
                 populateList();
                 Toast.makeText(getApplicationContext(), categoryTitle.getText().toString()+" has been added to your Categories", Toast.LENGTH_SHORT).show();
-        });
+            //public void onClick(View view) {
+            //    Intent inent = new Intent(getActivity(), Tab3Fragment.class);
+             //   startActivity(inent);
+            //}
+        });*/
+
 
 
         categoryTitle.addTextChangedListener(new TextWatcher() {
@@ -64,7 +80,7 @@ public class CategoryCreateActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                createBtn.setEnabled(!categoryTitle.getText().toString().trim().isEmpty());
+                createBtn.setEnabled(!categoryTitle.getText().toString().trim().isEmpty());/////////////////////////////////////////////////////////
             }
 
             @Override
