@@ -72,7 +72,7 @@ public class Downloader extends AsyncTask<Void,Integer,String> {
         try {
             URL url=new URL(address);
             HttpURLConnection con= (HttpURLConnection) url.openConnection();
-            con.setRequestProperty("Cookie", "__test=90e9e4b12c71c5bed665d72d8f934c2e; expires=Friday, January 1, 2038 at 1:55:55 AM; path=/");
+            con.setRequestProperty("Cookie", "__test=08c08d517fae7c14b1836a788be57237; expires=Friday, January 1, 2038 at 1:55:55 AM; path=/");
             is=new BufferedInputStream(con.getInputStream());
 
             BufferedReader br=new BufferedReader(new InputStreamReader(is));
