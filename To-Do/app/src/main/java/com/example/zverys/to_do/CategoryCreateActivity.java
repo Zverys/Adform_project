@@ -1,6 +1,8 @@
 package com.example.zverys.to_do;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,7 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class CategoryCreateActivity extends AppCompatActivity {
 
@@ -49,11 +54,16 @@ public class CategoryCreateActivity extends AppCompatActivity {
         tabSpec.setIndicator("List");
         tabHost.addTab(tabSpec);
 
+
         final Button createBtn = (Button) findViewById(R.id.button);
         createBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 addCategory(categoryTitle.getText().toString(), categoryDsc.getText().toString());
                 populateList();
+                ArrayList<String> list = new ArrayList<>();
+                list.add(categoryTitle.getText().toString());
+                list.add(categoryDsc.getText().toString());
+                CreateCategoryToDB(list);
                 Toast.makeText(getApplicationContext(), categoryTitle.getText().toString()+" has been added to your Categories", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(CategoryCreateActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -119,5 +129,49 @@ public class CategoryCreateActivity extends AppCompatActivity {
 
             return view;
         }
+
+    }
+    public void CreateCategoryToDB(ArrayList list) {
+
+        class CreateTask extends AsyncTask<String, Void, String> {
+            ProgressDialog loading;
+            DB database = new DB();
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(CategoryCreateActivity.this, getString(R.string.Login_please_wait), null, true, true);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+
+                if (s.equals(Integer.toString(HttpsURLConnection.HTTP_OK))) {
+                    Intent intent = new Intent(CategoryCreateActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(CategoryCreateActivity.this, "pavyko", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(CategoryCreateActivity.this, "nepavyko", Toast.LENGTH_LONG).show();
+                }
+                loading.dismiss();
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+                HashMap<String, String> data = new HashMap<>();
+                data.put("action", "category_create");
+                data.put("category", params[0]);
+                data.put("description", params[1]);
+                data.put("iduser", UserName.UserName);
+
+                String result = database.sendPostRequest(getString(R.string.URL_DATABASE), data);
+
+                return result;
+            }
+        }
+
+        CreateTask tasks = new CreateTask();
+        tasks.execute(list.get(0).toString(), list.get(1).toString());
     }
 }

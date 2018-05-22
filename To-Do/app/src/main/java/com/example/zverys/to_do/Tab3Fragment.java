@@ -26,7 +26,7 @@ public class Tab3Fragment extends Fragment {
         btnTEST.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent inent = new Intent(getActivity(), TaskCreateActivity.class);
+                Intent inent = new Intent(getActivity(), CategoryCreateActivity.class);
                 startActivity(inent);
             }
         });

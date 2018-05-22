@@ -32,7 +32,6 @@ public class TaskCreateActivity extends AppCompatActivity {
     private ArrayList<Task> tasks = new ArrayList<Task>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //tasks.add(new Task("uzduotis","aaaaaa", "virtuve", new Date(2011-11-11)));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_create);
         //get the spinner from the xml.
@@ -103,9 +102,9 @@ public class TaskCreateActivity extends AppCompatActivity {
                 if (s.equals(Integer.toString(HttpsURLConnection.HTTP_OK))) {
                     Intent intent = new Intent(TaskCreateActivity.this, MainActivity.class);
                     startActivity(intent);
-                    Toast.makeText(TaskCreateActivity.this, "zjbs", Toast.LENGTH_LONG).show();
+                    Toast.makeText(TaskCreateActivity.this, "Task added", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(TaskCreateActivity.this, "pz", Toast.LENGTH_LONG).show();
+                    Toast.makeText(TaskCreateActivity.this, "Task didn't add", Toast.LENGTH_LONG).show();
                 }
                 loading.dismiss();
             }
@@ -118,9 +117,8 @@ public class TaskCreateActivity extends AppCompatActivity {
                 data.put("aprasymas", params[1]);
                 data.put("kategorija", params[2]);
                 data.put("data", params[3]);
-
+                data.put("userid", UserName.UserName);
                 String result = database.sendPostRequest(getString(R.string.URL_DATABASE), data);
-
                 return result;
             }
         }
