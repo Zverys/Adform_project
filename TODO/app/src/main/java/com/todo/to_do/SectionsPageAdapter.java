@@ -1,4 +1,4 @@
-package com.example.zverys.to_do;
+package com.todo.to_do;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
