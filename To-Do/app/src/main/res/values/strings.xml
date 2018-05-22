@@ -23,6 +23,7 @@
     <string name="register_failure">Username or Email is taken by another account</string>
     <string name="URL_DATABASE">http://www.zverys.byethost7.com/mobile/zverysdatabase.php</string>
     <string name="URL_Get_Tasks">http://www.zverys.byethost7.com/mobile/getTasks.php</string>
+    <string name="URL_Get_Categories">http://www.zverys.byethost7.com/mobile/getCategories.php</string>
     <string name="login_success">Login succeeded</string>
     <string name="login_failure">Username or Email is not found</string>
 </resources>

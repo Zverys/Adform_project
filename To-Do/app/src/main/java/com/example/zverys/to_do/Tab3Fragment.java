@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 
 
 public class Tab3Fragment extends Fragment {
@@ -18,6 +19,9 @@ public class Tab3Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab3_fragment,container,false);
         btnTEST = (Button) view.findViewById(R.id.btnTEST3);
+        final ListView lv1= (ListView) view.findViewById(R.id.lv1);
+        final CategoriesDownloader d1=new CategoriesDownloader(this.getContext(),getString(R.string.URL_Get_Categories),lv1);
+        d1.execute();
 
         btnTEST.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -20,8 +20,6 @@ public class Tab1Fragment extends Fragment {
         View view = inflater.inflate(R.layout.tab1_fragment,container,false);
         btnTEST = (Button) view.findViewById(R.id.btnTEST);
         TextView Json = (TextView) view.findViewById(R.id.textas);
-        GetTasks Jsonas = new GetTasks();
-        Json.setText(Jsonas.getResult());
 
         btnTEST.setOnClickListener(new View.OnClickListener() {
             @Override
